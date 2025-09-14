@@ -1,0 +1,140 @@
+:host { display: block; }
+
+.pizza-card{
+  position: relative;
+  display: flex; flex-direction: column; gap: .75rem;
+  background: var(--dark);
+  color: #f4f4f4;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  padding: clamp(.8rem, 1.6vw, 1rem);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  overflow: hidden;
+}
+.pizza-card::before{
+  content:"";
+  position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(60% 50% at 50% -10%, color-mix(in oklab, #c64028 14%, transparent) 0%, transparent 60%);
+  opacity:.45;
+}
+.pizza-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(198,64,40,.45);
+  background: rgba(59, 43, 30, 0.9);
+}
+
+.thumb{
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  background: #0f0f0f;
+  border-radius: 15px;
+  padding: 20px;
+}
+.thumb img{
+  width: 100%;
+  height: 100%;
+  max-width: 350px;
+  max-height: 350px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.spice-meter{
+  display: inline-flex; gap: 6px; align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15,15,15,.75);
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: saturate(120%) blur(2px);
+  white-space: nowrap;
+}
+
+.flame{ font-size: 18px; line-height: 1; filter: grayscale(1) opacity(.5); }
+.flame.filled{ filter: none; }
+
+/* --- Látványos ÁR badge --- */
+.price-badge{
+  font-weight: 900;
+  font-size: clamp(1.05rem, 1vw + 1rem, 1.35rem); /* nagyobb */
+  color: #101010;
+  background: linear-gradient(180deg, var(--light), #c64028);
+  padding: .45rem .85rem; border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.spice-text{
+  font-size: .78rem; font-weight: 700; letter-spacing: .01em;
+  color: #f4f4f4; opacity: .95;
+}
+
+.spice-meter.lv-1 .spice-text { color:#cfe7c6; }
+.spice-meter.lv-2 .spice-text { color:#ffe08a; }
+.spice-meter.lv-3 .spice-text { color:#ffc07a; }
+.spice-meter.lv-4 .spice-text { color:#ff9b8f; }
+.spice-meter.lv-5 .spice-text { color:#ff8a80; }
+
+h3{
+  margin:.25rem 0 0;
+  font-family: ui-serif, Georgia, serif;
+  font-weight:800; line-height:1.2;
+  font-size: clamp(1rem, 0.6vw + 0.9rem, 1.25rem);
+  color:#fdf6ef;
+}
+.desc{
+  color:#cfcfcf;
+  line-height:1.6;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
+  overflow:hidden; min-height:3.6em;
+}
+
+.meta{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+.tags{ display:flex; flex-wrap:wrap; gap:.4rem; }
+.tag{
+  background: rgba(198,64,40,.15);
+  color:#fdf6ef;
+  padding:.2rem .55rem;
+  border-radius:999px;
+  font-size:.72rem;
+  border:1px solid rgba(198,64,40,.35);
+}
+.tag.veg{
+  background: rgba(71,97,59,.2);
+  color:#e9f4e6;
+  border-color: rgba(71,97,59,.4);
+}
+
+/* gombok */
+.actions{ display:flex; gap:.5rem; margin-top:.35rem; }
+.btn{
+  background: #c64028;
+  color: #101010;
+  border:1px solid #b43b23;
+  padding:.55rem .9rem;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  transition: transform .15s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn.btn-subtle{
+  background:#222222;
+  color:#f4f4f4;
+  border-color: rgba(255,255,255,.08);
+}
+
+/* fókuszgyűrűk */
+:where(a,button).btn:focus-visible, .thumb:focus-visible{
+  outline:2px solid #c64028;
+  outline-offset:3px;
+}
+
+/* motion-reduce */
+@media (prefers-reduced-motion: reduce){
+  .pizza-card, .btn{ transition:none !important; }
+}

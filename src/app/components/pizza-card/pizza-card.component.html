@@ -1,0 +1,42 @@
+<div class="pizza-card">
+  <div class="card-header">
+    <div class="spice-meter" [ngClass]="'lv-' + (pizza?.spiceLevel ?? 0)"
+         [attr.aria-label]="'Spice level: ' + (pizza?.spiceLevel ?? 0) + ' out of 5'"
+         role="img">
+      <ng-container *ngFor="let m of spiceMarks">
+        <span class="flame" [class.filled]="(pizza?.spiceLevel ?? 0) >= m" aria-hidden="true">🔥</span>
+      </ng-container>
+      <span class="spice-text">{{ spiceLabel[(pizza?.spiceLevel ?? 0)] }}</span>
+    </div>
+
+    <div class="price-badge">
+      {{ (pizza?.price ?? 0) | currency:currencyCode:'symbol':'1.2-2' }}
+    </div>
+  </div>
+  <a class="thumb"
+     [routerLink]="['/menu']"
+     [queryParams]="{ item: pizza.id }">
+
+    <img
+      ngSrc="{{ pizza.image }}"
+      width="350" height="350"
+      [alt]="pizza.name"
+      draggable="false"
+      loading="lazy" />
+  </a>
+
+  <h3>{{ pizza.name }}</h3>
+  <p class="desc">{{ pizza.desc }}</p>
+
+  <div class="meta">
+    <div class="tags">
+      <span class="tag" *ngFor="let t of (pizza?.tags ?? [])">{{ t }}</span>
+      <span class="tag veg" *ngIf="pizza?.vegetarian">Vegetarian</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a [routerLink]="['/menu']" [queryParams]="{ item: pizza.id }" class="btn">View details</a>
+    <button class="btn btn-subtle" type="button" (click)="addToCart.emit(pizza)">Add to cart</button>
+  </div>
+</div>

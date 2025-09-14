@@ -1,0 +1,111 @@
+<section class="highlight-hero">
+  <img src="icons/basil-1.png" alt="decor-1" class="decor decor-1"/>
+  <img src="icons/basil-2.png" alt="decor-2" class="decor decor-2"/>
+  <img src="icons/basil-2.png" alt="decor-3" class="decor decor-3"/>
+
+  @if (selectedPizza(); as pizza) {
+    <div class="hero-left">
+      <p class="special">{{ pizza.tag }}</p>
+      <h1 class="pizza-title">{{ pizza.name }}</h1>
+      <p class="description">{{ pizza.desc }}</p>
+      <div class="price-cta">
+        <a routerLink="/menu" class="btn-view">View Menu</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="pizza-image-wrapper">
+        <img
+          ngSrc="{{ pizza.image }}"
+          width="500" height="500"
+          [alt]="pizza.name"
+          class="pizza-main"
+        />
+      </div>
+    </div>
+  }
+
+  <div class="mini-gallery">
+    @for (pizza of pizzas(); track trackByName; let index = $index) {
+      <div
+        class="mini-item"
+        [class.active]="selectedIndex() === index"
+        (click)="selectPizza(index)"
+      >
+        <div class="mini-size">{{ pizza.special }}</div>
+        <img ngSrc="{{ pizza.image }}" width="70" height="70" [alt]="pizza.name" />
+        <div class="mini-caption">
+          <span class="mini-price">{{ pizza.price | currency:'USD':'symbol':'1.2-2' }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="features">
+  <h2>Why choose us?</h2>
+  <p class="subtitle">Real values. Real flavors.</p>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <img src="/icons/pizza.png" alt="Pizza" />
+      <h3>Authentic Italian recipes</h3>
+      <p>Our pizzas are made from traditional family recipes.</p>
+    </div>
+
+    <div class="feature-item">
+      <img src="/icons/ingredients.png" alt="Ingredients" />
+      <h3>Local ingredients</h3>
+      <p>We support small producers and use only fresh ingredients.</p>
+    </div>
+
+    <div class="feature-item">
+      <img src="/icons/passion.png" alt="Passion" />
+      <h3>Made with passion</h3>
+      <p>Every pizza is crafted with care and attention.</p>
+    </div>
+
+    <div class="feature-item">
+      <img src="/icons/delivery.png" alt="Delivery" />
+      <h3>Lightning-fast delivery</h3>
+      <p>Hot, fast, and right on time—that’s how your order arrives.</p>
+    </div>
+  </div>
+</section>
+
+<section class="card-slider-section">
+  <h2 class="section-title">Latest Blog Posts</h2>
+
+  <div class="slider-container" #sliderContainer>
+    <div class="slider-track">
+      <div class="card" *ngFor="let blog of blogs">
+        <img [src]="blog.img" [alt]="blog.title" draggable="false" />
+        <div class="card-content">
+          <h3>{{ blog.title }}</h3>
+          <p>{{ blog.date }}</p>
+        </div>
+      </div>
+
+      <div class="card" *ngFor="let blog of blogs">
+        <img [src]="blog.img" [alt]="blog.title" draggable="false" />
+        <div class="card-content">
+          <h3>{{ blog.title }}</h3>
+          <p>{{ blog.date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+    <div class="faq-question" (click)="toggleFAQ(i)">
+      {{ faq.question }}
+      <span class="arrow" [class.open]="openedIndex === i">▼</span>
+    </div>
+    <div class="faq-answer" [class.open]="openedIndex === i">
+      {{ faq.answer }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+:host {
+  display: block;
+  background: #f4e3c2;
+}
+
+.menu-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.menu-container h2 {
+  font-family: ui-serif, Georgia, serif;
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  margin: 0 0 10px 0;
+  color: #111111;
+  position: relative;
+}
+
+.menu-container h2::after {
+  content: "";
+  display: block;
+  width: min(140px, 40vw);
+  height: 4px;
+  margin-top: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #c64028 0%, #9b2d1c 100%);
+  opacity: 0.9;
+}
+
+.menu-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  margin-top: 20px;
+}
+
+.menu-empty {
+  text-align: center;
+  color: #111111;
+  padding: 20px;
+  border: 1px dashed #eeeeee;
+  border-radius: 15px;
+}
+
+.menu-grid a:focus-visible,
+.menu-grid button:focus-visible {
+  outline: 2px solid #c64028;
+  outline-offset: 3px;
+}
+
+@media (max-width: 1200px) {
+  .menu-grid {
+    gap: 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
