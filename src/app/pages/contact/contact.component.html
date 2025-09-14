@@ -1,14 +1,43 @@
-<div class="contact-container">
-  <h2>Contact Us</h2>
-  <p>Email: <a href="mailto:hello@joyslice.com">hello&#64;joyslice.com</a></p>
-  <p>Phone: <a href="tel:+123456789">+1 (234) 567-89</a></p>
-  <p>Address: 123 Pizza Street, Flavor Town, IT</p>
+<section class="contact-hero">
+  <div class="contact-inner">
+    <header class="contact-header">
+      <h1>GET IN TOUCH</h1>
+      <ul class="contact-lines">
+        <li>
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:+123456789">+1 (234) 567-89</a>
+        </li>
+        <li>
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:hello@joyslice.com">hello&#64;joyslice.com</a>
+        </li>
+        <li>
+          <i class="fa-solid fa-location-dot"></i>
+          123 Pizza Street, Flavor Town, IT
+        </li>
+      </ul>
+    </header>
 
-  <div class="social-media">
-    <a href="https://facebook.com/joyslice" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://instagram.com/joyslice" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://tiktok.com/@joyslice" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://youtube.com/@joyslice" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://x.com/joyslice" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <form class="form-grid" novalidate>
+      <div class="field" style="grid-area:name;">
+        <input type="text" id="name" placeholder="YOUR NAME *" required />
+      </div>
+
+      <div class="field" style="grid-area:email;">
+        <input type="email" id="email" placeholder="YOUR EMAIL *" required />
+      </div>
+
+      <div class="field" style="grid-area:phone;">
+        <input type="tel" id="phone" placeholder="YOUR PHONE *" />
+      </div>
+
+      <div class="field" style="grid-area:message;">
+        <textarea id="message" rows="8" placeholder="YOUR MESSAGE *" required></textarea>
+      </div>
+
+      <div class="actions" style="grid-area:submit;">
+        <button type="submit" class="btn-accent">SEND MESSAGE</button>
+      </div>
+    </form>
   </div>
-</div>
+</section>

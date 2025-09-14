@@ -18,24 +18,36 @@
        [class.active]="isActive('/')"
        (click)="closeMenu()">Home</a>
 
-    <a [routerLink]="['/menu']"
-       [class.active]="isActive('/menu', {}, true)"
-       (click)="closeMenu()">Pizza</a>
+    <div class="dropdown"
+         [class.open]="dropdownOpen"
+         (mouseenter)="onDropdownEnter()"
+         (mouseleave)="onDropdownLeave()">
 
-    <a [routerLink]="['/menu']" [queryParams]="{ type: 'dessert' }"
-       [class.active]="isActive('/menu', { type: 'dessert' })"
-       (click)="closeMenu()">Desserts</a>
+      <button class="dropdown-toggle"
+              type="button"
+              (click)="toggleDropdown()"
+              [attr.aria-expanded]="dropdownOpen"
+              aria-haspopup="true"
+              aria-controls="menuDropdown">
+        Menu
+        <span class="caret" [class.rotate]="dropdownOpen">▾</span>
+      </button>
 
-    <a [routerLink]="['/menu']" [queryParams]="{ type: 'drinks' }"
-       [class.active]="isActive('/menu', { type: 'drinks' })"
-       (click)="closeMenu()">Drinks</a>
-
-    <a [routerLink]="['/menu']" [queryParams]="{ type: 'coffee' }"
-       [class.active]="isActive('/menu', { type: 'coffee' })"
-       (click)="closeMenu()">Coffee</a>
+      <div id="menuDropdown"
+           class="dropdown-menu"
+           role="menu"
+           (mouseenter)="onMenuEnter()"
+           (mouseleave)="onMenuLeave()">
+        <a (click)="navTo(['/menu'])">Full Menu</a>
+        <a (click)="navTo(['/menu'], { type: 'pizza' })">Pizza</a>
+        <a (click)="navTo(['/menu'], { type: 'dessert' })">Desserts</a>
+        <a (click)="navTo(['/menu'], { type: 'drinks' })">Drinks</a>
+        <a (click)="navTo(['/menu'], { type: 'coffee' })">Coffee</a>
+      </div>
+    </div>
 
     <a [routerLink]="['/about']"
-       [class.active]="isActive('/about')"
+       [class.active]="isActive('/about', { type: 'about' })"
        (click)="closeMenu()">About</a>
 
     <a [routerLink]="['/contact']"

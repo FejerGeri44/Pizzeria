@@ -1,0 +1,40 @@
+<section class="about-hero">
+  <div class="hero-inner">
+    <p class="eyebrow">About Joy Slice</p>
+    <h1>We Craft Pizza with Heart</h1>
+    <p class="hero-lead">
+      Joy Slice is a neighborhood pizzeria serving hand-tossed pies, slow-simmered sauces,
+      and cheeses that melt like a dream. Everything we do is about simple ingredients,
+      honest methods, and a warm, lively slice of joy.
+    </p>
+    <a class="btn-accent" routerLink="/menu">View Menu</a>
+  </div>
+</section>
+
+<section class="about-stats">
+  <div class="stat" *ngFor="let stat of stats; trackBy: trackByIndex">
+    <span class="num">{{ stat.num }}</span>
+    <span class="caption">{{ stat.caption }}</span>
+  </div>
+</section>
+
+<section class="about-grid">
+  <article class="about-card" *ngFor="let c of cards; trackBy: trackById">
+    <div class="card-head">
+      <span class="icon-badge" aria-hidden="true">
+        <i [class]="c.icon"></i>
+      </span>
+
+      <div class="titles">
+        <p class="label">{{ c.label }}</p>
+
+        <ng-container [ngSwitch]="c.level">
+          <h2 *ngSwitchCase="'h2'">{{ c.title }}</h2>
+          <h3 *ngSwitchDefault>{{ c.title }}</h3>
+        </ng-container>
+      </div>
+    </div>
+
+    <p>{{ c.text }}</p>
+  </article>
+</section>

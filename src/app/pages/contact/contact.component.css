@@ -1,22 +1,133 @@
-.contact-container {
-  background-color: #1a1a1a;
-  color: #fff;
-  padding: 2rem;
+.contact-hero{
+  height: calc(100vh - 80px);
+  background: url("/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--light);
+  position: relative;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  overflow: hidden;
 }
-.contact-container a {
-  color: #ff3c00;
-  text-decoration: none;
+
+/* finom „dotted world” hatás (külső képfájl nélkül) */
+.contact-hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 1.5px) 0 0/12px 12px;
+  opacity:.25;
+  pointer-events:none;
 }
-.social-media {
-  margin-top: 1rem;
+
+/* enyhe sötét overlay a minta fölött */
+.contact-hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.35));
+  pointer-events:none;
 }
-.social-media a {
-  margin: 0 10px;
-  font-size: 1.5rem;
-  color: #fff;
-  transition: color 0.3s;
+
+.contact-inner{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
-.social-media a:hover {
-  color: #ff3c00;
+
+/* ===== Header: cím + elérhetőségek ===== */
+.contact-header{
+  text-align:center;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+.contact-header h1{
+  margin:0 0 .75rem 0;
+  letter-spacing:.08em;
+  font-size: clamp(1.8rem, 1.2rem + 2.2vw, 3rem);
+  color:#fff;
+}
+.contact-lines{
+  list-style:none; padding:0; margin:0;
+  display:flex; flex-wrap:wrap; gap:1rem 2rem; justify-content:center;
+  font-weight:600;
+}
+.contact-lines li{
+  display:flex; align-items:center; gap:.6rem;
+}
+.contact-lines i{ color: var(--light); opacity:.9; }
+.contact-lines a{ color: var(--light); text-decoration:none; border-bottom:1px solid transparent; }
+.contact-lines a:hover{ border-color: var(--light); }
+
+/* ===== Form layout: 2 oszlop, üzenet jobbra magas ===== */
+.form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "name message"
+    "email message"
+    "phone message"
+    "submit submit";
+  gap: 1rem;
+}
+
+/* Mezők */
+.field input, .field textarea{
+  width:100%;
+  background:#fff;
+  color:#222;
+  border: none;
+  border-radius: 6px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  outline:none;
+  transition: box-shadow .2s ease, transform .06s ease;
+}
+.field textarea{ resize: vertical; min-height: 220px; }
+
+.field input::placeholder, .field textarea::placeholder{
+  color:#8a8a8a; text-transform: uppercase; letter-spacing:.05em;
+  font-weight:600; opacity:.9;
+}
+
+.field input:focus, .field textarea:focus{
+  box-shadow: 0 0 0 4px rgba(198,64,40,.18), 0 6px 18px rgba(0,0,0,.3);
+  transform: translateY(-1px);
+}
+
+/* Gomb */
+.actions{ display:flex; justify-content:center; margin-top:.25rem; }
+.btn-accent{
+  background: var(--accent);
+  color:#fff;
+  border:none;
+  padding: .9rem 1.6rem;
+  border-radius: 6px;
+  font-weight:800;
+  letter-spacing:.06em;
+  cursor:pointer;
+  box-shadow: 0 8px 20px rgba(198,64,40,.35);
+  transition: transform .06s ease, filter .2s ease, box-shadow .2s ease;
+}
+.btn-accent:hover{ filter: brightness(.95); transform: translateY(-1px); }
+.btn-accent:active{ transform: translateY(0); box-shadow: 0 6px 16px rgba(198,64,40,.35); }
+
+/* ===== Responsív ===== */
+@media (max-width: 880px){
+  .form-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "email"
+      "phone"
+      "message"
+      "submit";
+  }
+  .field textarea{ min-height: 180px; }
+  .contact-lines{ gap:.6rem 1rem; }
 }

@@ -33,7 +33,7 @@ type Pizza = {
 export class HomeComponent implements AfterViewInit {
   @ViewChild('sliderContainer') sliderContainer!: ElementRef<HTMLDivElement>;
   openedIndex = 0;
-  readonly selectedIndex = signal(0);
+  readonly selectedIndex = signal(1);
   readonly selectedPizza = computed(() => this.pizzas()[this.selectedIndex()] ?? null);
   trackByName = (_: number, p: Pizza) => p.name;
 

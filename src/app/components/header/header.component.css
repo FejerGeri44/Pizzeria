@@ -75,6 +75,72 @@
   width: 100%;
 }
 
+.dropdown { position: relative; }
+.dropdown-toggle {
+  background: transparent;
+  border: 0;
+  color: var(--light);
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+}
+.dropdown-toggle:hover { color: var(--accent); }
+.caret { transition: transform .2s ease; display:inline-block; }
+.caret.rotate { transform: rotate(180deg); }
+
+.dropdown-menu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  min-width: 220px;
+  background: rgba(62,45,31,0.98);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  padding: .5rem;
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+  opacity: 0;
+  transform: translateY(6px) scale(.98);
+  transform-origin: top;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 1000;
+}
+
+.dropdown-menu::before{
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: -10px;
+  height: 10px;
+  pointer-events: auto;
+}
+
+.dropdown.open .dropdown-menu{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.dropdown-menu a{
+  display: block;
+  padding: .55rem .6rem;
+  color: var(--light);
+  text-decoration: none;
+  border-radius: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.dropdown-menu a:hover{
+  background: rgba(255,255,255,.06);
+  color: var(--accent);
+}
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -105,5 +171,39 @@
   .navbar a {
     padding: 0.5rem 0;
     width: 100%;
+  }
+
+  .dropdown { width: 100%; }
+
+  .dropdown-toggle{
+    width: 100%;
+    text-align: left;
+    padding: .5rem 0;
+  }
+
+  .dropdown-menu{
+    position: static;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0 .25rem;
+
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: none;
+    transition: max-height .25s ease, opacity .2s ease, visibility .2s;
+  }
+  .dropdown.open .dropdown-menu{
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
+    margin-top: .25rem;
+  }
+
+  .dropdown-menu a{
+    width: 100%;
+    padding: .45rem 0;
+    border-radius: 6px;
   }
 }
