@@ -8,6 +8,4 @@ import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
   template: ``
 
 })
-export class DrinksComponent {
-
-}
+export class DrinksComponent {}
